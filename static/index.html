@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多 Agent 协同运营自动化系统</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Multi-Agent Revenue Ops Studio</p>
+        <h1>多 Agent 协同运营自动化系统</h1>
+        <p class="hero-copy">
+          面向销售获客场景，把线索筛选、客户研究、分层运营、个性化触达和自动跟进串成一条可演示、可落库、可复盘的协同链路。
+        </p>
+      </div>
+      <div class="hero-panel">
+        <div class="stat-pill">
+          <span>系统状态</span>
+          <strong id="health-status">检测中...</strong>
+        </div>
+        <div class="stat-pill">
+          <span>样本线索</span>
+          <strong id="lead-count">0</strong>
+        </div>
+        <div class="stat-pill">
+          <span>最近运行</span>
+          <strong id="run-count">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel">
+        <div class="panel-heading">
+          <h2>运营任务配置</h2>
+          <p>输入产品定位和目标客群，系统会自动编排多 Agent 协作流程。</p>
+        </div>
+        <form id="campaign-form">
+          <label>
+            <span>活动名称</span>
+            <input name="campaign_name" value="Q2 智能获客加速计划" required>
+          </label>
+          <label>
+            <span>产品名称</span>
+            <input name="product_name" value="GrowthPilot Ops" required>
+          </label>
+          <label>
+            <span>产品价值主张</span>
+            <textarea name="product_value" rows="3">帮助销售团队自动筛选高意向客户、生成个性化触达文案，并按节奏自动跟进，显著提升首触达速度和线索转化效率。</textarea>
+          </label>
+          <label>
+            <span>目标行业</span>
+            <input name="target_industries" value="SaaS, 教育科技, 跨境电商, 金融科技">
+          </label>
+          <label>
+            <span>目标规模</span>
+            <input name="target_sizes" value="50-200, 200-500, 200-1000">
+          </label>
+          <label>
+            <span>目标角色</span>
+            <input name="target_personas" value="销售总监, 增长负责人, 市场负责人, 销售运营负责人">
+          </label>
+          <label>
+            <span>目标市场</span>
+            <input name="target_markets" value="中国, 东南亚, 北美">
+          </label>
+          <label>
+            <span>业务目标</span>
+            <textarea name="business_goal" rows="2">提升高质量线索回复率，缩短首触达时间，并让销售动作更标准化。</textarea>
+          </label>
+          <label>
+            <span>钩子 Offer</span>
+            <input name="offer" value="30 分钟增长诊断 + 14 天试用方案">
+          </label>
+          <label>
+            <span>沟通风格</span>
+            <select name="tone">
+              <option value="专业、直接">专业、直接</option>
+              <option value="顾问式">顾问式</option>
+              <option value="高管汇报风">高管汇报风</option>
+            </select>
+          </label>
+          <button type="submit" id="run-button">运行协同流程</button>
+        </form>
+      </section>
+
+      <section class="panel dashboard-panel">
+        <div class="panel-heading">
+          <h2>Agent 实时看板</h2>
+          <p>每个 Agent 都会留下动作摘要，方便你演示“多 Agent 协同”而不是单次生成。</p>
+        </div>
+        <div id="timeline" class="timeline empty-state">运行一次任务后，这里会展示完整协作过程。</div>
+
+        <div class="metrics-grid" id="metrics-grid">
+          <article class="metric-card">
+            <span>合格线索</span>
+            <strong>0</strong>
+          </article>
+          <article class="metric-card">
+            <span>平均匹配分</span>
+            <strong>0</strong>
+          </article>
+          <article class="metric-card">
+            <span>P1 客户</span>
+            <strong>0</strong>
+          </article>
+          <article class="metric-card">
+            <span>主力客群</span>
+            <strong>暂无</strong>
+          </article>
+        </div>
+
+        <div class="playbook" id="playbook">
+          <h3>运营执行剧本</h3>
+          <p>等待系统生成建议...</p>
+        </div>
+      </section>
+    </main>
+
+    <section class="panel secondary-panel">
+      <div class="secondary-grid">
+        <div>
+          <div class="panel-heading">
+            <h2>样本线索池</h2>
+            <p>项目内置了一组可直接演示的销售获客样本数据。</p>
+          </div>
+          <div id="lead-grid" class="lead-grid"></div>
+        </div>
+        <div>
+          <div class="panel-heading">
+            <h2>最近运行记录</h2>
+            <p>每次执行都会自动落库到本地 SQLite。</p>
+          </div>
+          <div id="history-list" class="history-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel result-panel">
+      <div class="panel-heading">
+        <h2>推荐触达名单</h2>
+        <p>系统会输出优先级、运营切入点、触达文案和跟进节奏。</p>
+      </div>
+      <div id="result-grid" class="result-grid empty-state">运行后会在这里显示精选线索与触达方案。</div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
